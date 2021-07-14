@@ -1,0 +1,276 @@
+Last login: Tue Jun  8 05:27:17 on ttys000
+rumeysacelik@Rumeysas-MacBook-Pro DLProject % python lstm.py
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schumm-1.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schumm-2.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schub_d960_4.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schumm-3.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schub_d960_1.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schumm-6.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schumm-4.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schub_d960_2.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schub_d960_3.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schumm-5.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schuim-4.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schuim-1.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schuim-3.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schuim-2.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schubert_D850_4.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schubert_D935_4.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schub_d760_4.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schubert_D850_1.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schubert_D935_1.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schub_d760_1.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schubert_D850_2.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schub_d760_3.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schubert_D935_2.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schubert_D935_3.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schubert_D850_3.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schub_d760_2.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schu_143_2.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schu_143_3.mid
+Loading Music File: /Users/rumeysacelik/Desktop/DLProject/schubert/schu_143_1.mid
+/Users/rumeysacelik/Desktop/DLProject/lstm.py:52: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray
+  notes_array = np.array([read_midi(path+i) for i in files])
+308
+173
+/Users/rumeysacelik/Desktop/DLProject/lstm.py:92: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray
+  new_music = np.array(new_music)
+2021-06-08 05:32:26.939358: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding (Embedding)        (None, 32, 100)           17300     
+_________________________________________________________________
+conv1d (Conv1D)              (None, 32, 64)            19264     
+_________________________________________________________________
+dropout (Dropout)            (None, 32, 64)            0         
+_________________________________________________________________
+max_pooling1d (MaxPooling1D) (None, 16, 64)            0         
+_________________________________________________________________
+conv1d_1 (Conv1D)            (None, 16, 128)           24704     
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 16, 128)           0         
+_________________________________________________________________
+max_pooling1d_1 (MaxPooling1 (None, 8, 128)            0         
+_________________________________________________________________
+conv1d_2 (Conv1D)            (None, 8, 256)            98560     
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 8, 256)            0         
+_________________________________________________________________
+max_pooling1d_2 (MaxPooling1 (None, 4, 256)            0         
+_________________________________________________________________
+global_max_pooling1d (Global (None, 256)               0         
+_________________________________________________________________
+dense (Dense)                (None, 256)               65792     
+_________________________________________________________________
+dense_1 (Dense)              (None, 173)               44461     
+=================================================================
+Total params: 270,081
+Trainable params: 270,081
+Non-trainable params: 0
+_________________________________________________________________
+2021-06-08 05:32:27.457612: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:176] None of the MLIR Optimization Passes are enabled (registered 2)
+Epoch 1/50
+503/503 [==============================] - 22s 23ms/step - loss: 4.5482 - val_loss: 3.9903
+
+Epoch 00001: val_loss improved from inf to 3.99027, saving model to best_model.h5
+Epoch 2/50
+503/503 [==============================] - 11s 22ms/step - loss: 3.8099 - val_loss: 3.8261
+
+Epoch 00002: val_loss improved from 3.99027 to 3.82609, saving model to best_model.h5
+Epoch 3/50
+503/503 [==============================] - 11s 22ms/step - loss: 3.6165 - val_loss: 3.6593
+
+Epoch 00003: val_loss improved from 3.82609 to 3.65926, saving model to best_model.h5
+Epoch 4/50
+503/503 [==============================] - 11s 22ms/step - loss: 3.4775 - val_loss: 3.5990
+
+Epoch 00004: val_loss improved from 3.65926 to 3.59903, saving model to best_model.h5
+Epoch 5/50
+503/503 [==============================] - 11s 22ms/step - loss: 3.3782 - val_loss: 3.4857
+
+Epoch 00005: val_loss improved from 3.59903 to 3.48567, saving model to best_model.h5
+Epoch 6/50
+503/503 [==============================] - 11s 22ms/step - loss: 3.2890 - val_loss: 3.4501
+
+Epoch 00006: val_loss improved from 3.48567 to 3.45015, saving model to best_model.h5
+Epoch 7/50
+503/503 [==============================] - 11s 23ms/step - loss: 3.2218 - val_loss: 3.3864
+
+Epoch 00007: val_loss improved from 3.45015 to 3.38645, saving model to best_model.h5
+Epoch 8/50
+503/503 [==============================] - 11s 22ms/step - loss: 3.1658 - val_loss: 3.3557
+
+Epoch 00008: val_loss improved from 3.38645 to 3.35573, saving model to best_model.h5
+Epoch 9/50
+503/503 [==============================] - 11s 22ms/step - loss: 3.0947 - val_loss: 3.2899
+
+Epoch 00009: val_loss improved from 3.35573 to 3.28992, saving model to best_model.h5
+Epoch 10/50
+503/503 [==============================] - 11s 22ms/step - loss: 3.0508 - val_loss: 3.2815
+
+Epoch 00010: val_loss improved from 3.28992 to 3.28153, saving model to best_model.h5
+Epoch 11/50
+503/503 [==============================] - 11s 22ms/step - loss: 3.0093 - val_loss: 3.2314
+
+Epoch 00011: val_loss improved from 3.28153 to 3.23144, saving model to best_model.h5
+Epoch 12/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.9704 - val_loss: 3.2112
+
+Epoch 00012: val_loss improved from 3.23144 to 3.21119, saving model to best_model.h5
+Epoch 13/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.9290 - val_loss: 3.1737
+
+Epoch 00013: val_loss improved from 3.21119 to 3.17370, saving model to best_model.h5
+Epoch 14/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.8930 - val_loss: 3.1556
+
+Epoch 00014: val_loss improved from 3.17370 to 3.15563, saving model to best_model.h5
+Epoch 15/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.8639 - val_loss: 3.1410
+
+Epoch 00015: val_loss improved from 3.15563 to 3.14101, saving model to best_model.h5
+Epoch 16/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.8353 - val_loss: 3.1199
+
+Epoch 00016: val_loss improved from 3.14101 to 3.11987, saving model to best_model.h5
+Epoch 17/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.8093 - val_loss: 3.0788
+
+Epoch 00017: val_loss improved from 3.11987 to 3.07878, saving model to best_model.h5
+Epoch 18/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.7874 - val_loss: 3.0726
+
+Epoch 00018: val_loss improved from 3.07878 to 3.07259, saving model to best_model.h5
+Epoch 19/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.7528 - val_loss: 3.0577
+
+Epoch 00019: val_loss improved from 3.07259 to 3.05767, saving model to best_model.h5
+Epoch 20/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.7336 - val_loss: 3.0448
+
+Epoch 00020: val_loss improved from 3.05767 to 3.04477, saving model to best_model.h5
+Epoch 21/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.7255 - val_loss: 3.0423
+
+Epoch 00021: val_loss improved from 3.04477 to 3.04229, saving model to best_model.h5
+Epoch 22/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.7104 - val_loss: 3.0083
+
+Epoch 00022: val_loss improved from 3.04229 to 3.00833, saving model to best_model.h5
+Epoch 23/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.7032 - val_loss: 3.0166
+
+Epoch 00023: val_loss did not improve from 3.00833
+Epoch 24/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.6606 - val_loss: 2.9955
+
+Epoch 00024: val_loss improved from 3.00833 to 2.99549, saving model to best_model.h5
+Epoch 25/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.6561 - val_loss: 3.0080
+
+Epoch 00025: val_loss did not improve from 2.99549
+Epoch 26/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.6459 - val_loss: 2.9736
+
+Epoch 00026: val_loss improved from 2.99549 to 2.97365, saving model to best_model.h5
+Epoch 27/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.6236 - val_loss: 2.9662
+
+Epoch 00027: val_loss improved from 2.97365 to 2.96616, saving model to best_model.h5
+Epoch 28/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.6184 - val_loss: 2.9645
+
+Epoch 00028: val_loss improved from 2.96616 to 2.96448, saving model to best_model.h5
+Epoch 29/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.6033 - val_loss: 2.9529
+
+Epoch 00029: val_loss improved from 2.96448 to 2.95288, saving model to best_model.h5
+Epoch 30/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.5856 - val_loss: 2.9571
+
+Epoch 00030: val_loss did not improve from 2.95288
+Epoch 31/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.5644 - val_loss: 2.9357
+
+Epoch 00031: val_loss improved from 2.95288 to 2.93572, saving model to best_model.h5
+Epoch 32/50
+503/503 [==============================] - 12s 23ms/step - loss: 2.5777 - val_loss: 2.9389
+
+Epoch 00032: val_loss did not improve from 2.93572
+Epoch 33/50
+503/503 [==============================] - 11s 23ms/step - loss: 2.5598 - val_loss: 2.9282
+
+Epoch 00033: val_loss improved from 2.93572 to 2.92822, saving model to best_model.h5
+Epoch 34/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.5505 - val_loss: 2.9173
+
+Epoch 00034: val_loss improved from 2.92822 to 2.91725, saving model to best_model.h5
+Epoch 35/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.5391 - val_loss: 2.9280
+
+Epoch 00035: val_loss did not improve from 2.91725
+Epoch 36/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.5357 - val_loss: 2.9166
+
+Epoch 00036: val_loss improved from 2.91725 to 2.91657, saving model to best_model.h5
+Epoch 37/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.5174 - val_loss: 2.8958
+
+Epoch 00037: val_loss improved from 2.91657 to 2.89576, saving model to best_model.h5
+Epoch 38/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.5146 - val_loss: 2.9006
+
+Epoch 00038: val_loss did not improve from 2.89576
+Epoch 39/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.5117 - val_loss: 2.8946
+
+Epoch 00039: val_loss improved from 2.89576 to 2.89456, saving model to best_model.h5
+Epoch 40/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4910 - val_loss: 2.8975
+
+Epoch 00040: val_loss did not improve from 2.89456
+Epoch 41/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4911 - val_loss: 2.8903
+
+Epoch 00041: val_loss improved from 2.89456 to 2.89028, saving model to best_model.h5
+Epoch 42/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4778 - val_loss: 2.8629
+
+Epoch 00042: val_loss improved from 2.89028 to 2.86285, saving model to best_model.h5
+Epoch 43/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4747 - val_loss: 2.8705
+
+Epoch 00043: val_loss did not improve from 2.86285
+Epoch 44/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4641 - val_loss: 2.8662
+
+Epoch 00044: val_loss did not improve from 2.86285
+Epoch 45/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4561 - val_loss: 2.8525
+
+Epoch 00045: val_loss improved from 2.86285 to 2.85250, saving model to best_model.h5
+Epoch 46/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4643 - val_loss: 2.8555
+
+Epoch 00046: val_loss did not improve from 2.85250
+Epoch 47/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4446 - val_loss: 2.8588
+
+Epoch 00047: val_loss did not improve from 2.85250
+Epoch 48/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4336 - val_loss: 2.8460
+
+Epoch 00048: val_loss improved from 2.85250 to 2.84595, saving model to best_model.h5
+Epoch 49/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4374 - val_loss: 2.8426
+
+Epoch 00049: val_loss improved from 2.84595 to 2.84258, saving model to best_model.h5
+Epoch 50/50
+503/503 [==============================] - 11s 22ms/step - loss: 2.4318 - val_loss: 2.8385
+
+Epoch 00050: val_loss improved from 2.84258 to 2.83846, saving model to best_model.h5
+[77, 77, 77, 77, 39, 77, 39, 125, 39, 125]
+rumeysacelik@Rumeysas-MacBook-Pro DLProject % 
